@@ -1,0 +1,3 @@
+file-loader en url-loader?
+
+bij opzet .babelrc vergeten... Niet vergeten bij volgend project

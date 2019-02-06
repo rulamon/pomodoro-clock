@@ -1,0 +1,45 @@
+{
+  "name": "pomodoro-clock",
+  "version": "1.0.0",
+  "description": "A Pomodoro Clock Timer for the FreeCodeCamp curriculum",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rulamon/pomodoro-clock.git"
+  },
+  "keywords": [
+    "react",
+    "pomodoro",
+    "clock",
+    "FreeCodeCamp",
+    "javascript"
+  ],
+  "author": "Ruben Lamon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rulamon/pomodoro-clock/issues"
+  },
+  "homepage": "https://github.com/rulamon/pomodoro-clock#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.2",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  }
+}
