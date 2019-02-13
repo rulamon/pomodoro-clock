@@ -184,18 +184,6 @@ export class App extends Component {
             beep.pause();
             beep.currentTime = 0;
             beep.play();
-        //     // animation after change
-        // } else if (this.state.circleClass == "clear"){
-        //     if(this.state.status=="session"){
-        //         this.setState({
-        //             circleClass: `animation-${this.state.session}`
-        //         })
-        //     }
-        //     if(this.state.status=="clear"){
-        //         this.setState({
-        //             circleClass: `animation-${this.state.break}`
-        //         })
-        //     }
         }
     }
 

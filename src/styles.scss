@@ -1,52 +1,96 @@
+$main-color: #333333;
+$text-color: #888888;
+
 * {
     padding: 0;
     margin: 0;
 }
+
+
+// loop for ring timer animation with same time as specified by user
 
 @for $time from 1 through 60 {
     $seconds: $time * 60;
     .animation-#{$time} {
         animation-name: ring;
         animation-timing-function: linear;
-        stroke-dasharray: 1400px;
-        stroke-dashoffset: 1400px;
+        stroke-dasharray: 1257px;
+        stroke-dashoffset: 1257px;
         animation-duration: #{$seconds}s;
+        z-index: 100;
     }
 }
 
+// keyframes for animation, closing the circle at full time
+@keyframes ring {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+// classes to start or pause animation
 @each $state in running, paused {
     .#{$state}{
         animation-play-state: #{$state}
     }
 }
 
+// class to reset animation (use setTimeout after)
 .clear {
     display: none;
 }
 
+button {
+    background-color: inherit;
+    border: none;
+    color: $text-color;
+    font-family: 'Open Sans', sans-serif;
+    font-size: inherit;
+    // outline: none;
+    text-align: center;
+}
+
+.change-btn {
+    padding: 4px;
+    margin: 3px;
+}
+
+.control-btn {
+    width: 50px;
+}
+
 body{
+    background-color: $main-color;
+    color: $text-color;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
 }
 
 #main-container {
-    background-color: #999999;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
     #change-time {
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
-        .controls-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
+        width: 100%;
+        .change-component{
+            text-align: center;
+            
+            .controls-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+            }
         }
     }
     #main-control {
@@ -54,27 +98,36 @@ body{
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        
         #timer-circle {
             display: flex;
             justify-content: center;
             align-items: center;
+            
             svg {
-                height: 450px;
-                width: 450px;
-                // circle {
-                //      animation-play-state: paused;
-                // }
+                height: 400px;
+                width: 400px;
             }
             #countdown-wrapper {
                 position: absolute;
                 text-align: center;
+                
+                // #timer-label{
+                    //     font-size: 25px;
+                    // }
+                
+                    #time-left {
+                        font-size: 60px;
+                    }
+                }
             }
         }
+        #control-button-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            // border: solid 1px white;
+            
+        }
     }
-}
-
-@keyframes ring {
-    100% {
-        stroke-dashoffset: 0;
-    }
-}
