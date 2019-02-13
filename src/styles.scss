@@ -1,0 +1,80 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@for $time from 1 through 60 {
+    $seconds: $time * 60;
+    .animation-#{$time} {
+        animation-name: ring;
+        animation-timing-function: linear;
+        stroke-dasharray: 1400px;
+        stroke-dashoffset: 1400px;
+        animation-duration: #{$seconds}s;
+    }
+}
+
+@each $state in running, paused {
+    .#{$state}{
+        animation-play-state: #{$state}
+    }
+}
+
+.clear {
+    display: none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#main-container {
+    background-color: #999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    #change-time {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .controls-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+    }
+    #main-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        #timer-circle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+                height: 450px;
+                width: 450px;
+                // circle {
+                //      animation-play-state: paused;
+                // }
+            }
+            #countdown-wrapper {
+                position: absolute;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@keyframes ring {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
