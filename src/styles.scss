@@ -51,15 +51,18 @@ button {
     text-align: center;
     transition: color 1s;
     padding: 0;
+    
+    &:hover {
+        color: $timer-color;
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+    }
 }
 
-button:hover {
-    color: $timer-color;
-}
 
-button:focus {
-    outline: none;
-}
 
 .change-btn {
     padding: 4px;
