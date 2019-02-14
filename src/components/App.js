@@ -25,6 +25,7 @@ export class App extends Component {
     }
     countDownToggleBreak(){
         if(this.state.seconds == 0){
+            // if a countdown is finished (minutes == 0), switch status and change minutes to the new countdown time as set in state.break or session
             if(this.state.minutes == 0){
                 if(this.state.status == "Session"){
                     this.setState({
@@ -33,6 +34,7 @@ export class App extends Component {
                         status: "Break",
                         circleClass: "clear"
                     })
+                    // using setTimeOut to reset circle animation
                     setTimeout(() => {
                         this.setState({
                             circleClass: `animation-${this.state.break}`
@@ -52,18 +54,21 @@ export class App extends Component {
                     }, 100);
                 }               
             } else {
+                // if minutes != zero, decrement minutes and change seconds to 59
                 this.setState({
                     minutes: this.state.minutes - 1,
                     seconds: 59
                 })
             }
         } else {
+            // if minutes and seconds != zero, decrement seconds
             this.setState({
                 seconds: this.state.seconds - 1
             })
         }
     }
     startStop(){
+        // start timer if state.active == paused, pause otherwise. state.active also makes animation pause or run by using it as a class
         if(this.state.active == "paused"){
             this.setState({active: "running"});
             this.runTimer = setInterval(this.countDownToggleBreak, 1000)
@@ -73,6 +78,7 @@ export class App extends Component {
         }
     }
     reset(){
+        // reset to initial state
         clearInterval(this.runTimer);
         this.setState({
             session: 25,
@@ -93,6 +99,7 @@ export class App extends Component {
     }
 
     increment(event){
+        // increment if state.status != what you want to increment, otherwise nothing happens
         if(event.target.id == "break-increment" && this.state.break < 60){
             if(this.state.status == "Session"){
                 this.setState({
@@ -133,6 +140,7 @@ export class App extends Component {
     }
 
     decrement(event){
+        // decrement if state.status != what you want to increment, otherwise nothing happens
         if(event.target.id == "break-decrement" && this.state.break > 1){
             if(this.state.status == "Session"){
                 this.setState({
@@ -173,6 +181,7 @@ export class App extends Component {
     }
 
     componentDidUpdate() {
+        // play beep when timer finishes
         if(this.state.minutes == 0 && this.state.seconds == 0){
             let beep = document.getElementById('beep');
             beep.pause();

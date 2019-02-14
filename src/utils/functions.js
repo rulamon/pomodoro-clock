@@ -8,8 +8,3 @@ export const doubleDigits = (number) => {
 export const firstCapital = (string) => {
     return string.substring(0,1).toUpperCase() + string.substring(1);
 }
-
-// calculates seconds from number of minutes
-export const minToSec = (minutes) => {
-    return minutes * 60;
-}
