@@ -1,5 +1,6 @@
-$main-color: #333333;
+$main-color: #303030;
 $text-color: #888888;
+$timer-color: #00AA00;
 
 * {
     padding: 0;
@@ -14,8 +15,8 @@ $text-color: #888888;
     .animation-#{$time} {
         animation-name: ring;
         animation-timing-function: linear;
-        stroke-dasharray: 1257px;
-        stroke-dashoffset: 1257px;
+        stroke-dasharray: 1005px;
+        stroke-dashoffset: 1005px;
         animation-duration: #{$seconds}s;
         z-index: 100;
     }
@@ -40,23 +41,29 @@ $text-color: #888888;
     display: none;
 }
 
+// button styling
 button {
     background-color: inherit;
     border: none;
     color: $text-color;
     font-family: 'Open Sans', sans-serif;
     font-size: inherit;
-    // outline: none;
     text-align: center;
+    transition: color 1s;
+    padding: 0;
+}
+
+button:hover {
+    color: $timer-color;
+}
+
+button:focus {
+    outline: none;
 }
 
 .change-btn {
     padding: 4px;
     margin: 3px;
-}
-
-.control-btn {
-    width: 50px;
 }
 
 body{
@@ -71,17 +78,26 @@ body{
     font-size: 25px;
 }
 
+#root {
+    height: 100vh;
+}
 #main-container {
+    height: 100%;
+    width: 320px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    // border: solid 1px white;
+
     
     #change-time {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
+        // border: solid 1px white;
+        
         .change-component{
             text-align: center;
             
@@ -90,10 +106,15 @@ body{
                 justify-content: center;
                 align-items: center;
                 flex-direction: row;
+
+                .change-length{
+                    width: 35px;
+                }
             }
         }
     }
     #main-control {
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -107,27 +128,23 @@ body{
             svg {
                 height: 400px;
                 width: 400px;
+                transform: rotate(-90deg);
             }
             #countdown-wrapper {
                 position: absolute;
                 text-align: center;
                 
-                // #timer-label{
-                    //     font-size: 25px;
-                    // }
-                
-                    #time-left {
-                        font-size: 60px;
-                    }
+                #time-left {
+                    font-size: 60px;
                 }
             }
         }
         #control-button-wrapper {
             width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            // border: solid 1px white;
             
         }
     }
+}

@@ -93,89 +93,83 @@ export class App extends Component {
     }
 
     increment(event){
-        if(this.state.active == "paused"){
-            if(event.target.id == "break-increment" && this.state.break < 60){
-                if(this.state.status == "Session"){
+        if(event.target.id == "break-increment" && this.state.break < 60){
+            if(this.state.status == "Session"){
+                this.setState({
+                    break: this.state.break + 1
+                })
+            } else if(this.state.active == "paused" && this.state.status == "Break") {
+                this.setState({
+                    break: this.state.break + 1,
+                    minutes: this.state.break + 1,
+                    seconds: 0,
+                    circleClass: "clear"
+                })
+                setTimeout(() => {
                     this.setState({
-                        break: this.state.break + 1
+                        circleClass: `animation-${this.state.break}`
                     })
-                } else {
-                    this.setState({
-                        break: this.state.break + 1,
-                        minutes: this.state.break + 1,
-                        seconds: 0,
-                        circleClass: "clear"
-                    })
-                    setTimeout(() => {
-                        this.setState({
-                            circleClass: `animation-${this.state.break}`
-                        })
-                    }, 100);
-                }
+                }, 100);
             }
-            if(event.target.id == "session-increment" && this.state.session < 60){
-                if(this.state.status == "Session"){
+        } else if(event.target.id == "session-increment" && this.state.session < 60){
+            if(this.state.status == "Session" && this.state.active == "paused"){
+                this.setState({
+                    session: this.state.session + 1,
+                    minutes: this.state.session + 1,
+                    seconds: 0,
+                    circleClass: "clear"
+                })
+                setTimeout(() => {
                     this.setState({
-                        session: this.state.session + 1,
-                        minutes: this.state.session + 1,
-                        seconds: 0,
-                        circleClass: "clear"
+                        circleClass: `animation-${this.state.session}`
                     })
-                    setTimeout(() => {
-                        this.setState({
-                            circleClass: `animation-${this.state.session}`
-                        })
-                    }, 100);
-                } else {
-                    this.setState({
-                        session: this.state.session + 1
-                    })
-                }
+                }, 100);
+            } else if (this.state.status == "Break"){
+                this.setState({
+                    session: this.state.session + 1
+                })
             }
-        }        
+        }
     }
 
     decrement(event){
-        if(this.state.active == "paused"){
-            if(event.target.id == "break-decrement" && this.state.break > 1){
-                if(this.state.status == "Session"){
+        if(event.target.id == "break-decrement" && this.state.break > 1){
+            if(this.state.status == "Session"){
+                this.setState({
+                    break: this.state.break - 1,
+                })
+            } else if (this.state.status == "Break" && this.state.active == "paused") {
+                this.setState({
+                    break: this.state.break - 1,
+                    minutes: this.state.break -1,
+                    seconds: 0,
+                    circleClass: "clear"
+                })
+                setTimeout(() => {
                     this.setState({
-                        break: this.state.break - 1,
+                        circleClass: `animation-${this.state.break}`
                     })
-                } else {
-                    this.setState({
-                        break: this.state.break - 1,
-                        minutes: this.state.break -1,
-                        seconds: 0,
-                        circleClass: "clear"
-                    })
-                    setTimeout(() => {
-                        this.setState({
-                            circleClass: `animation-${this.state.break}`
-                        })
-                    }, 100);
-                }
+                }, 100);
             }
-            if(event.target.id == "session-decrement" && this.state.session > 1){
-                if(this.state.status == "Session"){
+        } else if(event.target.id == "session-decrement" && this.state.session > 1){
+            if(this.state.status == "Session" && this.state.active == "paused"){
+                this.setState({
+                    session: this.state.session - 1,
+                    minutes: this.state.session - 1,
+                    seconds: 0,
+                    circleClass: "clear"
+                })
+                setTimeout(() => {
                     this.setState({
-                        session: this.state.session - 1,
-                        minutes: this.state.session - 1,
-                        seconds: 0,
-                        circleClass: "clear"
+                        circleClass: `animation-${this.state.session}`
                     })
-                    setTimeout(() => {
-                        this.setState({
-                            circleClass: `animation-${this.state.session}`
-                        })
-                    }, 100);
-                } else {
-                    this.setState({
-                        session: this.state.session - 1
-                    })
-                }
+                }, 100);
+            } else if (this.state.status == "Break"){
+                this.setState({
+                    session: this.state.session - 1
+                })
             }
-        }        
+        }
     }
 
     componentDidUpdate() {

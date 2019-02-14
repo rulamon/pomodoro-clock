@@ -6,8 +6,8 @@ export const MainControl = (props) => {
         <div id="main-control">
             <div id="timer-circle">
                 <svg>
-                    <circle r="180px" fill="none" strokeWidth="2px" cx="200px" cy="200px" stroke="#555555"></circle>
-                    <circle className={`${props.circleClass} ${props.active}`} r="180px" fill="none" strokeWidth="2px" cx="200px" cy="200px" stroke="#00AA00"></circle>
+                    <circle r="160px" fill="none" strokeWidth="2px" cx="200px" cy="200px" stroke="#555555"></circle>
+                    <circle className={`${props.circleClass} ${props.active}`} r="160px" fill="none" strokeWidth="2px" cx="200px" cy="200px" stroke="#00AA00"></circle>
                 </svg>
                 <div id="countdown-wrapper">
                     <div id="timer-label">{props.status}</div>
